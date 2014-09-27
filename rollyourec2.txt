@@ -1,0 +1,84 @@
+Rolling your own... (using EC2)
+(Students: If you notice errors, please correct them)
+
+Mentally prepare yourself. We're going to get an Amazon EC2 Instance up and running, connect to it, and then install some basic web serving software via the command line. We'll use PuTTY, PuTTygen, and WinSCP to connect the instance. They are free, so go online and find them.
+
+1. Get an Amazon Web Services account
+2. Log in to AWS console
+3. Go to EC2 control area
+4. Press "Launch Instance"
+5. Select the flavor of instance; I'll use Ubuntu Server 12.04. Choose the one that is available with the free tier ("Free Tier Eligible")
+6. Move through and launch. We'll configure a bit after the fact.
+7. Create a new key pair; download it and put it somewhere safe.
+8. Launch!
+9. Check the AWS EC2 console to see your instance starting and running. You might make note of its unique ID.
+
+If you're running a lot of instances or sharing an account in an organization, it may be useful to add a "tag" or two to your instance to make it more identifiable to others. If you select your instance, a set of tabs will appear at the bottom. Go to "Tags" and you find the option to create a keypair. An example keypair might be, "owner":"glennon".
+
+You now have your own computer running on the cloud. We need to open some ports so we can connect to it and also prepare our server for serving web content.
+
+10. Now to configure it a bit. We need to make port 80, 443, and 22 available. Go to the link for Security Groups
+11. Click "Create Security Group"
+12. Name it something and maybe give it the description: standard web 80, 443, and 22 config; press button to create security group
+13. Select your security group and go to the "Inbound" tab.
+14. Go to "HTTP" in the pulldown and add the rule
+15. Go to "HTTPS" in the pulldown and add the rule
+16. Go to "SSH" in the pulldown and add the rule
+17. Choose Apply Rule Changes
+18. Nice. Now we need to associate our security group with our running instance. Go to the instances area.
+19. Right click on your instance and select "Change Security Groups"
+20. Via checkbox, select your security group (probably uncheck whatever group its currently using).
+22. Press the "Assign Security Groups" button.
+22. For ease of use, give the instance an Elastic IP address. Go to Elastic IPs.
+23. Click the button, Allocate New Address. You want to do it, so click affirmative for the any additional dialogs that ask.
+24. Click on the button that says "Associate Address".
+25. Use the pulldown to find your running instance and click "Associate". Note your new IP address. By the way, if you have a web domain (like alanglennon.com and want to associate it to your IP address, you must use a DNS server; Amazon has a service called Route 53 that does this).
+
+Connecting to our instance is a little wonky -- and honestly -- if you're used to working with fancy user interfaces, connecting will be pretty anticlimatic. Nevertheless, all this will enable you to experiment with new web software and just be a generally awesome person.
+
+26. We'll use PuTTY and PuTTYgen to help us connect to our EC2 instance. Go to the Internet and download both tools.
+27. First we need to make the security key we made in Step 7 work with PuTTY. Open PuTTYgen.
+28. Go to "Conversions" and select "Import key".
+29. Steer over to the key you made in Step 7 and select it.
+30. Select "Save private key".
+31. I suggest giving your new key the same name as before (but with a .ppk suffix instead of .pem).
+32. Close PuTTYgen
+
+Now, let's connect to our instance using PuTTY.
+33. Start PuTTY.
+34. Under hostname, type: ubuntu@RAAAAWWR where RAAAAWWR is the IP address you associated with your instance in Step 25.
+35. The folks at Amazon recommend going to Connection and changing "Seconds between keepalives" to 60.
+36. Go to the little SSH plus symbol, open it, and select Auth.
+37. Click the browse button and find your .ppk file; and select Open.
+38. Time to connect. Click Open again.
+39. You'll get a fingerprint security alert. Click through it.
+40. Let the wave of glory wash over you as you bask in the radiance of being connected to your own server.
+
+Now, let's install a standard stack of web software. We're already on Linux, so let's add Apache, MySQL, and php -- the LAMP stack.
+
+41. type: sudo -s
+42. type: apt-get update (After you type, it'll do stuff that might take 15-30 seconds)
+43. type: apt-get install lamp-server^
+44. If all is going well, it'll ask if you want to continue, type: Y
+45. Enter and note your MySQL password for "root" when prompted.
+46. Go to your IP address in your browser and see if things are working. It should have a web page status message now.
+
+We need to do a little bit more housekeeping to make it so our user "ubuntu" can write stuff over in the web directory: /var/www.
+
+We add our user ubuntu to a group called www-data
+47. type: sudo adduser ubuntu www-data
+
+We try to clear up any ownership issues
+48. type: sudo chown -R www-data:www-data /var/www
+
+Make it so members of www-data group can manipulate /var/www
+49. type: sudo chmod -R g+rw /var/www
+
+50. You may need to restart the apache web server for these changes to propagate. Do this by typing: sudo service apache2 restart
+
+51. You can use a SFTP client like WinSCP to move files back and forth from the computer in front of you to your server --or-- if you have a modern text editor like Notepad++, you can configure it to work directly with files on your server. This is particularly useful for experimenting.
+
+Remember, Amazon Web Services charges money for running instances. If you're using this tutorial, chances are, you are on their temporary free tier. Eventually, though, you will need to either pay or shut down your instance. To do so, go to your instance in the AWS Console, find your instance, and "Terminate" it. You should also go to the Elastic IP controls and release the address. There are ways to save the configuration of your instance (for instance, see: Snapshots) and/or save other data on your instance. Unless you explicitly save your data, your instance and all data no longer exist after a "terminate" or crash.
+
+web stuff is located in a directory called /var/www
+
