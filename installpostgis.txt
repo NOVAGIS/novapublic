@@ -1,0 +1,187 @@
+54.200.220.71
+
+Installing Postgres and PostGIS
+
+Configuring your server
+
+1. For Postgresql to work, we have to open port 5432. Go to the Amazon Web Services Console and to "Security Groups".
+
+2. Create a new Security Group and call it something like "postgport". You might want to add a description such as "Postgresql uses port 5432".
+
+3. Now we need to add this rule to the Security Group. Make sure your new group is selected, then select the Inbound tab at the bottom of the page.
+
+4. Select Custom Rule, type in 5432 for the port range, and click "Add Rule".
+
+5. Click "Apply Rule Changes".
+
+6. Now go to your Instances section of the AWS console, right click on your instance, and select "Change Security Groups".
+
+7. Click the checkbox for your new "postgport" group. Note that you can have more than one security group associated with an instance (so you should keep any existing groups checked too if you have any).
+
+8. Click the button "Assign Security Groups".
+
+That takes care of Amazon's side of things. Now back to getting Postgres working.
+
+--------------------------------------
+Install Postgres and PostGIS
+
+9. Get and install the software. In the terminal, type:
+sudo apt-get install build-essential postgresql-9.1 postgresql-server-dev-9.1 libxml2-dev libproj-dev libjson0-dev xsltproc docbook-xsl docbook-mathml
+
+10. Then, to add raster support type: sudo apt-get install libgdal1-dev
+
+11. Build GEOS. This requires several commands and affords topology in PostGIS. Type in each line:
+wget http://download.osgeo.org/geos/geos-3.3.9.tar.bz2
+tar xfj geos-3.3.9.tar.bz2
+cd geos-3.3.9
+./configure
+make
+sudo make install
+cd ..
+
+12. Build PostGIS 2.0.4. Type in each line:
+wget http://download.osgeo.org/postgis/source/postgis-2.0.4.tar.gz
+tar xfz postgis-2.0.4.tar.gz
+cd postgis-2.0.4
+./configure
+make
+sudo make install
+sudo ldconfig
+sudo make comments-install
+
+13. Make the command line functions work. Type each line one at a time:
+sudo ln -sf /usr/share/postgresql-common/pg_wrapper /usr/local/bin/shp2pgsql
+sudo ln -sf /usr/share/postgresql-common/pg_wrapper /usr/local/bin/pgsql2shp
+sudo ln -sf /usr/share/postgresql-common/pg_wrapper /usr/local/bin/raster2pgsql
+
+
+
+--------------------------------------
+
+20. Change your postgres user's password. This next command runs a psql client as a linux user postgres and connects to the postgres database.
+Type: sudo -u postgres psql postgres
+
+21. Type: alter user postgres with password 'slipperyQ@3';
+You should create your own password though instead of slipperyQ@3
+
+22. Type: \q
+
+23. Time to allow remote connections. Type:
+sudo nano /etc/postgresql/9.1/main/postgresql.conf
+
+24. This is a command line text editor, so look around a bit. If you accidently mess something up, press Control X and then, when prompted, do not save your changes. 
+
+We're going to make postgres allow us to connect from remote locations. This is not very secure, so once you become more expert, you should administer your databases in more sophisticated ways. For now though, go to the line:
+
+#listen_address = 'localhost'
+
+and change it to:
+
+listen_address = '*'
+
+25. After you do that, press Control-X. Then press Y to save your changes. You might have to press enter too.
+
+26. Now we have to go through a similar process to change the file pg_hba.conf. Type:
+sudo nano /etc/postgresql/9.1/main/pg_hba.conf
+
+27. Steer down to the lines that look like this:
+
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+
+28. Change those lines to look like this:
+# IPv4 local connections:
+host    all             all             all     		md5
+
+29. Now we need to restart the Postgresql service. So, type:
+sudo service postgresql restart
+
+30. Enjoy. Postgres and PostGIS are now installed.
+
+--------------------------------------
+You might want to double check for updates and upgrades from the Ubuntu guys.
+type: sudo apt-get update
+type: sudo apt-get upgrade
+--------------------------------------
+
+Working with your database
+There are numerous ways to manage our postgresql databases. You can use the command line, web-based managers, and even desktop clients. 
+
+Desktop Client Option: PgAdmin3
+A. I like pg_admin3 for windows and often run that. To connect to your postgresql databasii, come up with a clever name for the connection; for host, add your IP address; port should be 5432; username: postgres; and add your password. Unclick the remember password button. Read the documentation and investigate ways to make this more secure.
+
+B. Click open. It should add your connection under Servers. You'll probably need to expand the group to see your database connection.
+
+
+Web Client Option: phppgadmin
+A. You could use phppgadmin. It's a browser-based client.
+type: sudo apt-get install phppgadmin
+
+B. You'll need to configure it to allow connections from a remote computer. Type: 
+sudo nano /etc/phppgadmin/apache.conf
+
+C. Change the 'deny from all' line to: allow from all
+
+D. Type: sudo nano /etc/phppgadmin/config.inc.php
+
+E. Change the extra_login_security variable to false. Changing this variable creates a major security vulnerability, so you should read more about securing your implementation before you allow this to run for very long or share with your maps with anyone other than very good friends.
+
+F. Type: sudo service apache2 restart 
+
+G. You might want to restart postgres too: sudo service postgresql restart
+
+H. You can visit your postgres manager at an address like: http://youripaddress.pt/phppgadmin
+
+Again, after you have managed your databases and tables, you should change apache.conf and config.inc.php back to their more restrictive variables. Alternatively, search the web for methods to secure postgres and phppgadmin.
+
+A miscellaneous note about for creating users in postgres. In the terminal, you can do a: 
+sudo su postgres
+create user george with password 'password';
+grant all privileges on database census to george;
+\q
+
+--------------------------------------
+Create and spatially enable your database
+
+A. Within phppgadmin, you can use the user interface to create a new database.
+
+B. Click on your new database and select the SQL tab.
+
+C. Add and run the line:
+CREATE EXTENSION postgis;
+
+Optionally, you can extend the database to consider topology:
+CREATE EXTENSION postgis_topology;
+--------------------------------------
+
+You create a database, spatialize it, then import a shapefile using shp2pgsql
+For example, in the terminal:
+---------
+sudo su postgres
+shp2pgsql -c -D -s 900913 -I uscnty.shp us_counties | psql -d spatialtest
+exit
+---------
+creates a table 'us_counties' with SRID '900913' in the database 'spatialtest'.
+900913 = the data's SRID
+uscnty.shp = the name of your shapefile
+uc_counties = the name you want for the table in the database
+spatialtest = the name of your database
+
+--------------------------------------
+Here's another example:
+
+CREATE TABLE locations(loc_id integer primary key
+   , loc_name varchar(70), geog geography(POINT) );
+INSERT INTO locations(loc_id, loc_name, geog)
+ VALUES (1, 'ISEGI', ST_GeogFromText('POINT(38.732342 -9.16067)') )
+   , (2, 'Residence', ST_GeogFromText('POINT(38.733072 -9.161914)') )
+   , (3, 'Erasmus Mundus Room', ST_GeogFromText('POINT(38.732741 -9.159274)') );
+
+
+
+REFERENCES
+
+Install Postgres 9.1, PostGIS 2.0.2 and PG Routing on Ubuntu 12.04 (Precise Pangolin); https://gist.github.com/djq/2846196
+
+How to install PostGIS 2.0 on Ubuntu 12.04 LTS (precise) from source
+https://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS20Ubuntu1204src
