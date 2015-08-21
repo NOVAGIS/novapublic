@@ -1,6 +1,6 @@
-Applications of Geographic Information Systems
-Syllabus, Fall 2013
-Tuesdays 18:30-22:15, ISEGI Room 2
+**Applications of Geographic Information Systems**  
+Syllabus, Fall 2013  
+Tuesdays 18:30-22:15, ISEGI Room 2  
 
 Alan Glennon
 Prerequisites: None
@@ -24,7 +24,7 @@ COURSE PROGRAM
 * Web-based GIS
 * GIS Service Publishing
 * Network analysis and optimization
-* Introduction to tools for addressing 3D, temporal, ìbigî, and social data
+* Introduction to tools for addressing 3D, temporal, ‚Äúbig‚Äù, and social data
 
 COURSE OBJECTIVES
 * Recognize modern GIS capabilities and appropriate tools for geospatial problem solving. To be familiar with a wide range of analytical operations available within GIS. Know what GIS does.
@@ -64,7 +64,7 @@ GRADING METRICS
 COURSE OUTLINE
 Tuesday, 10 September 2013, 18:30-22:15 -- Introduction; GIS Basics and Workflows
 Tuesday, 17 September 2013, 20:30-22:15 -- GIS Operations and Problem Solving
-Thursday, 19 September 2013, 20:30-22:15 ñ Editing and Automating Tasks
+Thursday, 19 September 2013, 20:30-22:15 ‚Äì Editing and Automating Tasks
 Tuesday, 24 September 2013, 18:30-22:15 -- VGI, Community, and Collaboration
 Tuesday, 1 October 2013, 18:30-22:15 -- Data Sources and Management
 Tuesday, 8 October 2013, 18:30-22:15 -- Mobile Platforms and Data Collection, part 1
@@ -77,12 +77,12 @@ Tuesday, 19 November 2013, 18:30-22:15 -- Where Next? 3D, Big Data, Mobile, and 
 Tuesday, 26 November 2013, 18:30-22:15 -- Student Projects Demonstration and Discussion
 
 ACADEMIC CONDUCT
-(modified from a document by Dr. Sara Fabrikant, ETH-Zurich, and combined with elements of the NOVA document: ìGood Practice in PhD Education at Universidade Nova de Lisboa)
+(modified from a document by Dr. Sara Fabrikant, ETH-Zurich, and combined with elements of the NOVA document: ‚ÄúGood Practice in PhD Education at Universidade Nova de Lisboa)
 Cheating, plagiarism and other academic dishonesty are an assault upon the basic integrity and meaning of a University.
 Cheating is the unauthorized use of information or study guides in any academic exercise.
 Plagiarism is academic theft, or the act of using someone else's words, pictures, ideas, or procedures without proper acknowledgement, or to present them as if they originated with you.
 The same codes of conduct apply also for the computing environment. For example, going into someone's computer account and copying files without their permission or taking any material off the Web and using it as if it was your own is not only unethical, but illegal in many nations.
-Students should be aware that ìself-plagiarismî is also not acceptable. In self-plagiarism, authors reuse their own previously written work or data in a ìnewî written work without letting the reader know that it has appeared elsewhere. The reproduction of material which was used in other work or course assessment is also considered self-plagiarism.
+Students should be aware that ‚Äúself-plagiarism‚Äù is also not acceptable. In self-plagiarism, authors reuse their own previously written work or data in a ‚Äúnew‚Äù written work without letting the reader know that it has appeared elsewhere. The reproduction of material which was used in other work or course assessment is also considered self-plagiarism.
 In other situations, particularly learning situations, it is possible that students who do not know the protocols of academic expression can inadvertently plagiarize. In some cultures, direct use of another person's words brings great honor to the quoted person. In this University, plagiarism constitutes a form of cheating, and will not be tolerated. If you are unsure whether to cite someone else's work (including the Web) as your work through an assignment, come talk to the Professor about it.
 Concerns research ethics in general and plagiarism in particular, Universidade Nova de Lisboa endorses the guidelines of the European Code of Conduct for Research Integrity (European Science Foundation).
 
