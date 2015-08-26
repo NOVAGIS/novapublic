@@ -1,36 +1,37 @@
 -----------------
 IN-CLASS EXERCISE 2
 -----------------
+  
+Scenario:  
+Only minutes ago, a criminal escaped from Lisbon Prison. She is within one kilometer of the prison. We want to place roadblocks along the perimeter of this zone at every street. Each checkpoint needs one police officer. Provide the location of each checkpoint and a count of the number of officers needed.
 
-Scenario:
-Only minutes ago, a criminal escaped from Lisbon Prison. She is within one kilometer of the prison. We want to place roadblocks along the perimeter of this zone at every street. Each checkpoint needs one police officer. Provide the location of each checkpoint and a count of the number of officers needed?
-
-Turn in: An Esri map package of location of checkpoints and your ModelBuilder Model. Your data and workflow model should be contained in a single file geodatabase. Delete the buildings data from your geodatabase to make the file much smaller. Upload your work to ArcGIS Online, make it publicly accessible, and submit the link. Please source your map data; for instance, if you are using OpenStreetMap road data, include the note: Road data, Copyright 2013 OpenStreetMap Contributors; Shapefile extract from Geofabrik.de. 
-
+Turn in:  
+An Esri map package of location of checkpoints and your ModelBuilder Model. Your data and workflow model should be contained in a single file geodatabase. Delete the buildings data from your geodatabase to make the file much smaller. Upload your work to ArcGIS Online, make it publicly accessible, and submit the link. Please source your map data; for instance, if you are using OpenStreetMap road data, include the note: Road data, Copyright 2013 OpenStreetMap Contributors; Shapefile extract from Geofabrik.de. 
+  
 This in-class assignment is due 24 September 2013 at 6:30PM. I suggest you turn it in immediately following class.
-
+  
 GIS Workflow: in-class demo & discussion
-
+  
 Grab the data: http://bit.ly/158Noah (or via http://dra.in/lab2.mpk)
-
-Step 1. Obtain street and building data. Where?
-Step 2. Transform data into a useful coordinate system. Which?
-Step 3. Load the data into a geodatabase. Pause a moment to review file formats.
-Step 4. Locate the prison.
-Step 5. Create a 1-km buffer around the prison.
-Step 6. Now what?
-Step 7. ?
-Step 8. ?
-
+  
+Step 1. Obtain street and building data. Where?  
+Step 2. Transform data into a useful coordinate system. Which?  
+Step 3. Load the data into a geodatabase. Pause a moment to review file formats.  
+Step 4. Locate the prison.  
+Step 5. Create a 1-km buffer around the prison.  
+Step 6. Now what?  
+Step 7. ?  
+Step 8. ?  
+  
 The Scenario Changes:
 Minutes have passed. We need to move our roadblocks to four kilometers. Automate the process in case we need to move the checkpoints again. Provide your solution with your other deliverables.
-
-
+  
+  
 -----------------
 LAB 2
 -----------------
 Part 1.
-The mayor of Matosinhos, Portugal, is concerned about pollution coming from factories along the river, Rio Leça, upstream of the town. The River is one of the most polluted in Europe. Could you identify industrial landuse within one kilometer of the river and provide her the number of square kilometers? two kilometers from the river? three? Upload a map package to ArcGIS Online, make it public, and include any toolboxes you have created. Send a link and a short discussion of your work. Suppose you used OpenStreetMap data for your analysis; in 150 words or less, explain how the estimation of industrial landuse area could be improved?
+The mayor of Matosinhos, Portugal, is concerned about pollution coming from factories along the river, Rio LeÃ§a, upstream of the town. The River is one of the most polluted in Europe. Could you identify industrial landuse within one kilometer of the river and provide her the number of square kilometers? two kilometers from the river? three? Upload a map package to ArcGIS Online, make it public, and include any toolboxes you have created. Send a link and a short discussion of your work. Suppose you used OpenStreetMap data for your analysis; in 150 words or less, explain how the estimation of industrial landuse area could be improved?
 
 Part 2. 
 Using all your GIS and cartographic prowess, create a choropleth map of estimated world population for the year 2005. Send me a note about how you created your map and submit the map as a pdf, png, or weblink. Provide reasoning for the projection you chose. Warning: For this exercise, using the Web Mercator projection is unacceptable.
