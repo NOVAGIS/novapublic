@@ -1,0 +1,24 @@
+Collaboration Discussion Fall 2013  
+GIS Applications Class, Dr. Alan Glennon  
+notes from the class discussion  
+  
+*Sharing Data and Projects*  
+	Map Package  
+	Geodatabases (as folders -- and zip to make it a single file)  
+		useful to set relative paths  
+	Online (public and private) databases  
+	Common folders  
+	Individual files  
+	  
+*Sharing Workflows*  
+	Modelbuilder Models  
+	Code  
+		Github  
+		Common folders on servers  
+  
+*Publishing Map Products*  
+	ArcGIS Online: map platform; less customizable UI  
+	Google Maps:   
+	ArcGIS Server: customizable maps and UI  
+	Create tiles with a product like Geoserver or Mapbox  
+		and use Leaflet, OpenLayers, etc for UI  
