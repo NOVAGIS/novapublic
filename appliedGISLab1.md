@@ -8,5 +8,5 @@ Lab 1:
 For this lab, you are the instructor. Create a GIS software exercise that demonstrates three standard geospatial analytical operations. Make the lab follow a single use case or narrative (for example, an urban planning, hydrology, or demographics use case), and yield a meaningful result. Use a step-by-step style that explains to the user what is happening in each significant step. The lab should be fully functional with links to data sources and any other necessary materials. You may discuss the project with your classmates, but each of you is responsible for submitting a new, personal, original work. Submit the lab via e-mail as a MS Word document, pdf, or Github repository link.
   
   
-Alan Glennon  
-aglennon@isegi.unl.pt  
+Alan Glennon
+alan[at]arogi.com
