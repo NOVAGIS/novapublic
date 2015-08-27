@@ -13,8 +13,8 @@ notes from the class discussion
 *Sharing Workflows*  
 	Modelbuilder Models  
 	Code  
-		Github  
-		Common folders on servers  
+		- Github  
+		- Common folders on servers  
   
 *Publishing Map Products*  
 	ArcGIS Online: map platform; less customizable UI  
