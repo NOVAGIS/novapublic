@@ -9,7 +9,7 @@ http://www.isegi.unl.pt/GEOTECH/
 Unless otherwise stated in the individual file, [this is the license](https://github.com/NOVAGIS/novapublic/blob/master/LICENSE.md).
 
 Acknowledgments:
-Github organizational account provided courtesy of Github.
-Class computation partially supported by an AWS in Education Grant award.
+GitHub Organizational Account provided courtesy of GitHub.
+Class computation partially supported by an Amazon Web Services (AWS) in Education Grant award.
 
-Many thanks to Github and Amazon!
+Many thanks to GitHub and Amazon!
